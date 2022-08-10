@@ -19,7 +19,7 @@ const connectionParams = {
     // useFindAndModify: false,
     // useCreateIndex: true
 }
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(url, connectionParams)
     .then(() => {
         console.log('Connected to the database ')
     })
