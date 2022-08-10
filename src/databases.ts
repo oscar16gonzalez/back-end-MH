@@ -15,10 +15,11 @@ const mongoose = require('mongoose')
 const url = `mongodb+srv://Oscar:bFDw14YKtKYo71Ht@clusterafilicionesmh.hlx6v9k.mongodb.net/?retryWrites=true&w=majority`;
 const connectionParams = {
     useNewUrlParser: true,
-    // useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    // useFindAndModify: false,
+    // useCreateIndex: true
 }
-mongoose.connect(url, connectionParams)
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('Connected to the database ')
     })
