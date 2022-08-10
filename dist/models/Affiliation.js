@@ -1,18 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = require("mongoose");
-const affiliationSchema = new mongoose_1.Schema({
+import { Schema, model } from 'mongoose';
+const affiliationSchema = new Schema({
     //Datos basicos 
     cedula: {
         type: Number,
         required: true,
         unique: true
     },
-    cedula_frontal: {
-        type: String,
-    },
-    cedula_posterior: {
-        type: String,
+    archivos: {
+        type: Object,
     },
     nombre: {
         type: String,
@@ -37,7 +32,6 @@ const affiliationSchema = new mongoose_1.Schema({
     },
     correo: {
         type: String,
-        required: true,
         unique: true
     },
     celular: {
@@ -54,6 +48,12 @@ const affiliationSchema = new mongoose_1.Schema({
     celular_emergencia: {
         type: Number,
         required: true
+    },
+    whatsapp: {
+        type: String
+    },
+    telegram: {
+        type: String
     },
     //---------DATOS TRABAJADOR
     fecha_ingreso: {
@@ -90,6 +90,9 @@ const affiliationSchema = new mongoose_1.Schema({
     fondo_pensiones: {
         type: String,
     },
+    fonod_cesantias: {
+        type: String
+    },
     caja_compensacion: {
         type: String,
     },
@@ -108,10 +111,13 @@ const affiliationSchema = new mongoose_1.Schema({
     },
     aux_admin_revision: {
         type: String
+    },
+    asistencia: {
+        type: Object
     }
 }, {
     versionKey: false,
     timestamps: true
 });
-exports.default = (0, mongoose_1.model)('Affiliation', affiliationSchema);
+export default model('Affiliation', affiliationSchema);
 //# sourceMappingURL=Affiliation.js.map

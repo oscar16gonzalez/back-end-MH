@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv_1 = require("dotenv");
-(0, dotenv_1.config)();
-exports.default = {
+import { config } from 'dotenv';
+config();
+export default {
     mongodbURL: process.env.MONGODB_URI || 'mongodb:localhost/afiliaciones',
     SECRET: 'afiliaciones-api'
 };
