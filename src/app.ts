@@ -1,6 +1,3 @@
-if(process.env.NODE_ENV === 'development'){
-    require('dotenv').config()
-}
 
 import express from 'express'
 import morgan from 'morgan'
@@ -8,8 +5,6 @@ import cors from 'cors'
 import affiliationRoutes from './routes/affiliation.routes'
 import loginRoutes from './routes/login.routes'
 import proyectRoutes from './routes/proyectos.routes'
-import path, { dirname } from 'path'
-import multer from 'multer'
 import bodyParser  from 'body-parser'
 import './databases'
 
