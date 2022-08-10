@@ -17,7 +17,7 @@ const app = express()
 
 
 //settings
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
