@@ -13,9 +13,7 @@
 const mongoose = require('mongoose')
 
 // const url = `mongodb+srv://Oscar:bFDw14YKtKYo71Ht@clusterafilicionesmh.hlx6v9k.mongodb.net/?retryWrites=true&w=majority⁄`;
-console.log("LLEGA", process.env.MONGODB_URI);
-
-const url = process.env.MONGODB_URI;
+const url = `mongodb+srv://Oscar:bFDw14YKtKYo71Ht@clusterafilicionesmh.hlx6v9k.mongodb.net/?retryWrites=true&w=majority`;
 const connectionParams = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
