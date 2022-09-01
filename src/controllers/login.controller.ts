@@ -1,4 +1,4 @@
-import  Users, { IUser } from '../models/Users'
+ import  Users, { IUser } from '../models/Users'
 import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import config from '../config'

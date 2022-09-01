@@ -12,16 +12,16 @@ const client =  twilio(accountSid , authToken)
 
 
 //Creacion de una afiliacion 
-export async function creatAffiliation(req: Request , res: Response): Promise<Response> {
+export async function creatAffiliation(req: Request , res: Response){
 
-    console.log(req.files)
+    console.log('Request de createAffiliation',req.file)
 
 
     const {cedula, nombre,apellido, genero, fecha_nacimiento,
         direccion, correo, celular, telefono, nombre_emergencia,
         celular_emergencia,  fecha_ingreso, examen_ingreso, salario,
         cargo, curso_alturas, rut, eps, arl, fondo_pensiones, fondo_cesantias, caja_compensacion,
-        estado, numero_cuenta, entidad_bancaria, aux_admin_revision, whatsapp,telegram, asistencia} = req.body
+        estado, numero_cuenta, entidad_bancaria, aux_admin_revision, whatsapp,telegram, asistencia, proyectos} = req.body
         
         
         const newAffiliation = {
@@ -31,18 +31,29 @@ export async function creatAffiliation(req: Request , res: Response): Promise<Re
             celular_emergencia: celular_emergencia, fecha_ingreso: fecha_ingreso, examen_ingreso: examen_ingreso, salario: salario,
             cargo: cargo, curso_alturas: curso_alturas, rut:rut, eps:eps, arl: arl, fondo_pensiones: fondo_pensiones, fondo_cesantias: fondo_cesantias, caja_compensacion: caja_compensacion,
             estado: estado, numero_cuenta: numero_cuenta, entidad_bancaria: entidad_bancaria, aux_admin_revision: aux_admin_revision, whatsapp: whatsapp,
-            telegram: telegram, archivos: req.files, asistencia: asistencia  
+            telegram: telegram, archivos: req.file, asistencia: asistencia, proyectos: proyectos  
             
           
         }
+
+        console.log("ACA---------",req.file?.filename);
+        
         
         const affiliation = new Affiliation(newAffiliation)
         await affiliation.save()
 
-        return res.json({
-            message: 'Affiliation successfuly saved',
-            affiliation
-        });
+        // return res.json({
+        //     message: 'Affiliation successfuly saved',
+        //     affiliation,
+        //     url: `http://localhost:3000/${req.file?.filename}`
+        // });
+
+        res.send({ message: 'Affiliation successfuly saved',
+        data: affiliation,
+        url: `http://localhost:3000/${req.file?.filename}`})
+
+        console.log(res.send);
+        
 }
 
 // Buscar todas las afiliaciones
@@ -64,11 +75,11 @@ export async function findOneAffiliation(req: Request, res: Response): Promise<R
 export async function updateAffiliation(req: Request, res: Response): Promise<Response> {
     const { id } = req.params
     const { correo, rut, curso_alturas, examen_ingreso, eps, arl,fondo_pensiones,
-        fondo_cesantias, caja_compensacion, entidad_bancaria, numero_cuenta } = req.body
+        fondo_cesantias, caja_compensacion, entidad_bancaria, numero_cuenta, proyectos } = req.body
 
     const updatedAffiliation = await Affiliation.findByIdAndUpdate(id, {
         correo, rut, curso_alturas, examen_ingreso, eps, arl,fondo_pensiones,
-        fondo_cesantias, caja_compensacion, entidad_bancaria, numero_cuenta
+        fondo_cesantias, caja_compensacion, entidad_bancaria, numero_cuenta, proyectos
     })
 
     return res.json({

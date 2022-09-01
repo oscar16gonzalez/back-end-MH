@@ -40,7 +40,7 @@ const affiliationSchema = new Schema ({
 
     correo: {
         type: String,
-        unique: true
+        
     },
 
     celular: {
@@ -151,6 +151,9 @@ const affiliationSchema = new Schema ({
 
     asistencia: {
         type: Object
+    },
+    proyectos: {
+        type: String
     }
 },{
     versionKey: false,

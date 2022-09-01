@@ -36,3 +36,15 @@ export async function findAllNotificatio(req: Request, res: Response): Promise<R
 
 }
 
+export async function updateEstado(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params
+    const { estado } = req.body
+    const updatedEstado = await Notification.findByIdAndUpdate(id, {
+        estado
+    })
+
+    return res.json({
+        message: 'Succesfully update',
+        updatedEstado
+    })
+}
