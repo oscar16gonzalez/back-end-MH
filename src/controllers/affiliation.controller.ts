@@ -42,12 +42,6 @@ export async function creatAffiliation(req: Request , res: Response){
         const affiliation = new Affiliation(newAffiliation)
         await affiliation.save()
 
-        // return res.json({
-        //     message: 'Affiliation successfuly saved',
-        //     affiliation,
-        //     url: `http://localhost:3000/${req.file?.filename}`
-        // });
-
         res.send({ message: 'Affiliation successfuly saved',
         data: affiliation,
         url: `http://localhost:3000/${req.file?.filename}`})
@@ -57,73 +51,96 @@ export async function creatAffiliation(req: Request , res: Response){
 }
 
 // Buscar todas las afiliaciones
-export async function findAllAffiliation(req: Request, res: Response): Promise<Response> {
-    
-    const affiliation = await Affiliation.find().sort('-createdAt')
-    return res.json(affiliation)
+export async function findAllAffiliation(req: Request, res: Response){
+
+    try {
+        const affiliation = await Affiliation.find().sort('-createdAt')
+        return res.json(affiliation).status(200).send('OK')
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error');
+    }
+     
 }
 
 //Buscar afiliacion por cedula
-export async function findOneAffiliation(req: Request, res: Response): Promise<Response> {
-    //const { id } = req.params
-    const affiliation = await Affiliation.find({cedula: req.params.cedula})
-
-    return res.json(affiliation)
+export async function findOneAffiliation(req: Request, res: Response) {
+    try {
+        const affiliation = await Affiliation.find({cedula: req.params.cedula})
+        return res.json(affiliation).status(200).send('OK')
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error');
+    }
+    
 }
 
 //Actualizar por id 
-export async function updateAffiliation(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params
-    const { correo, rut, curso_alturas, examen_ingreso, eps, arl,fondo_pensiones,
-        fondo_cesantias, caja_compensacion, entidad_bancaria, numero_cuenta, proyectos } = req.body
+export async function updateAffiliation(req: Request, res: Response) {
+    try {
+        const { id } = req.params
+        const { correo, rut, curso_alturas, examen_ingreso, eps, arl,fondo_pensiones,
+            fondo_cesantias, caja_compensacion, entidad_bancaria, numero_cuenta, proyectos } = req.body
+    
+        const updatedAffiliation = await Affiliation.findByIdAndUpdate(id, {
+            correo, rut, curso_alturas, examen_ingreso, eps, arl,fondo_pensiones,
+            fondo_cesantias, caja_compensacion, entidad_bancaria, numero_cuenta, proyectos
+        })
+    
+        return res.json( updatedAffiliation).status(200).send('OK')
 
-    const updatedAffiliation = await Affiliation.findByIdAndUpdate(id, {
-        correo, rut, curso_alturas, examen_ingreso, eps, arl,fondo_pensiones,
-        fondo_cesantias, caja_compensacion, entidad_bancaria, numero_cuenta, proyectos
-    })
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error');
+    }
 
-    return res.json({
-        message: 'Succesfully update',
-        updatedAffiliation
-    })
 }
 
 //Actualizar estado
-export async function updateEstado(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params
-    const { estado  } = req.body
-    const updatedEstado = await Affiliation.findByIdAndUpdate(id, {
-        estado
-    })
-
-    return res.json({
-        message: 'Succesfully update',
-        updatedEstado
-    })
+export async function updateEstado(req: Request, res: Response) {
+    try {
+        const { id } = req.params
+        const { estado  } = req.body
+        const updatedEstado = await Affiliation.findByIdAndUpdate(id, {
+            estado
+        })
+    
+        return res.json(updatedEstado).status(200).send('OK')
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error');
+    }
 }
 
 //Actualizar asistencia
-export async function updateAsistencia(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params
-    const { asistencia  } = req.body
-    const updatedAsistencia = await Affiliation.findByIdAndUpdate(id, {
-        asistencia
+export async function updateAsistencia(req: Request, res: Response) {
+    try {
+        const { id } = req.params
+        const { asistencia  } = req.body
+        const updatedAsistencia = await Affiliation.findByIdAndUpdate(id, {
+            asistencia
     })
 
-    return res.json({
-        message: 'Succesfully update',
-        updatedAsistencia
-    })
+        return res.json(updatedAsistencia).status(200).send('OK')
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error');
+    }
+    
 }
 
 //Borrar afiliacion por id 
-export async function deleteAffiliation(req: Request, res: Response) : Promise<Response>{
-   const { id } = req.params
-   const afiliacion = await Affiliation.findByIdAndDelete(id)
-   return res.json({
-    message: 'Affiliation delete succesfully',
-    afiliacion
-   })
+export async function deleteAffiliation(req: Request, res: Response){
+    try {
+        const { id } = req.params
+        const afiliacion = await Affiliation.findByIdAndDelete(id)
+        return res.json(afiliacion).status(200).send('OK')
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error');
+    }
+
 }
 
 

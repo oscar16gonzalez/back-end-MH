@@ -1,68 +1,90 @@
-import Proyect from '../models/Proyectos'
+import Project from '../models/Proyectos'
 import {request, Request, response, Response} from 'express';
 
 
 //Creacion de un proyecto 
-export async function creatProyects(req: Request, res: Response): Promise<Response> {
-    const { contrato, objeto_contrato, contratista, nit, nombre_rep_legal, cedula_rep_legal,
-        plazo_ejecucion, valor_contrato, departamento, municipio, usuarios, } = req.body
+export async function creatProjects(req: Request, res: Response) {
+    try {
+        const { contrato, objeto_contrato, contratista, nit, nombre_rep_legal, cedula_rep_legal,
+            plazo_ejecucion, valor_contrato, departamento, municipio, usuarios, } = req.body
+        
     
+        const newProject = {
+                contrato: contrato, objeto_contrato: objeto_contrato, contratista: contratista, nit: nit,
+                nombre_rep_legal: nombre_rep_legal, cedula_rep_legal: cedula_rep_legal, plazo_ejecucion: plazo_ejecucion,
+                valor_contrato: valor_contrato, departamento: departamento, municipio: municipio, usuarios:usuarios
+        }
+    
+        const projects = new Project(newProject)
+        await projects.save()
+    
+        return res.json(projects).status(200).send('OK')
 
-    const newProyect = {
-            contrato: contrato, objeto_contrato: objeto_contrato, contratista: contratista, nit: nit,
-            nombre_rep_legal: nombre_rep_legal, cedula_rep_legal: cedula_rep_legal, plazo_ejecucion: plazo_ejecucion,
-            valor_contrato: valor_contrato, departamento: departamento, municipio: municipio, usuarios:usuarios
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error');
     }
-
-    const proyects = new Proyect(newProyect)
-    await proyects.save()
-
-    return res.json({
-        message: 'Proyect successfuly saved',
-        proyects
-    })
-
 
 }
 
 
 //Buscar todos los proyectos 
-export async function findAllProyects(req: Request, res: Response): Promise<Response> {
-    const proyects = await Proyect.find().sort('-createdAt')
-    return res.json(proyects)
+export async function findAllProjects(req: Request, res: Response){
+    try {
+        const projects = await Project.find().sort('-createdAt')
+        return res.json(projects).status(200).send('OK')
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error');
+    }
+
 
 }
 
 //Buscar proyectos por id 
-export async function findOneProyect(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params
-    const proyects = await Proyect.findById(id)
+export async function findOneProject(req: Request, res: Response){
+    try {
+        const { id } = req.params
+        const projects = await Project.findById(id)
+    
+        return res.json(projects).status(200).send('OK')
 
-    return res.json(proyects)
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error');
+    }
+
 }
 
 //Actualizar por id 
-export async function updateProyect(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params
-    const { estado } = req.body
-    const updatedProyect = await Proyect.findByIdAndUpdate(id, {
-        estado
-    })
+export async function updateProject(req: Request, res: Response){
+    try {
+        const { id } = req.params
+        const { estado } = req.body
+        const updatedProject = await Project.findByIdAndUpdate(id, {
+            estado
+        })
+    
+        return res.json(updatedProject).status(200).send('OK')
 
-    return res.json({
-        message: 'Succesfully update',
-        updatedProyect
-    })
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error');
+    }
+
 }
 
 //Borrar por id 
-export async function deleteProyect(req: Request, res: Response) : Promise<Response>{
-    const { id } = req.params
-    const proyects = await Proyect.findByIdAndDelete(id)
-    return res.json({
-     message: 'Affiliation delete succesfully',
-     proyects
-    })
+export async function deleteProject(req: Request, res: Response) {
+    try {
+        const { id } = req.params
+        const projects = await Project.findByIdAndDelete(id)
+        return res.json(projects).status(200).send('OK')
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error');
+    }
  }
     
 

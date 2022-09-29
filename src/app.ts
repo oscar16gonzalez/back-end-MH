@@ -4,7 +4,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import affiliationRoutes from './routes/affiliation.routes'
 import loginRoutes from './routes/login.routes'
-import proyectRoutes from './routes/proyectos.routes'
+import projectRoutes from './routes/proyectos.routes'
 import notificationRoutes from './routes/notification.routes'
 import bodyParser  from 'body-parser'
 import './databases'
@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', loginRoutes)
 app.use('/afiliacion', affiliationRoutes)
-app.use('/proyectos', proyectRoutes)
+app.use('/proyectos', projectRoutes)
 app.use('/notification', notificationRoutes)
 
 

@@ -1,21 +1,21 @@
 import { Router } from 'express'
-import * as proyectsController from '../controllers/proyectos.controller'
+import * as projectsController from '../controllers/proyectos.controller'
 
 const router = Router();
 
 //http://localhost:4000/proyectos
-router.post('/', proyectsController.creatProyects)
+router.post('/', projectsController.creatProjects)
 
 //http://localhost:4000/proyectos
-router.get('/', proyectsController.findAllProyects)
+router.get('/', projectsController.findAllProjects)
 
 //http://localhost:4000/proyectos
-router.get('/:id', proyectsController.findOneProyect)
+router.get('/:id', projectsController.findOneProject)
 
 //http://localhost:4000/proyectos
-router.put('/:id', proyectsController.updateProyect)
+router.put('/:id', projectsController.updateProject)
 
 //http://localhost:4000/proyectos
-router.delete('/:id', proyectsController.deleteProyect)
+router.delete('/:id', projectsController.deleteProject)
 
 export default router;

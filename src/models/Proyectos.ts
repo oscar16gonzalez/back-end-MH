@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-const proyectSchema = new Schema({
+const projectSchema = new Schema({
     contrato: {
         type: String,
         required: true
@@ -99,4 +99,4 @@ const proyectSchema = new Schema({
     timestamps: true
 })
 
-export default model('Proyect', proyectSchema)
+export default model('Proyect', projectSchema)
