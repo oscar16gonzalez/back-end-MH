@@ -5,13 +5,15 @@ import {request, Request, response, Response} from 'express';
 //Creacion de un proyecto 
 export async function creatProyects(req: Request, res: Response): Promise<Response> {
     const { contrato, objeto_contrato, contratista, nit, nombre_rep_legal, cedula_rep_legal,
-        plazo_ejecucion, valor_contrato, departamento, municipio, usuarios, } = req.body
+        plazo_ejecucion, valor_contrato, departamento, municipio, usuarios, url_proceso, celular_1, 
+        celular_2, correo_1, correo_2} = req.body
     
 
     const newProyect = {
             contrato: contrato, objeto_contrato: objeto_contrato, contratista: contratista, nit: nit,
             nombre_rep_legal: nombre_rep_legal, cedula_rep_legal: cedula_rep_legal, plazo_ejecucion: plazo_ejecucion,
-            valor_contrato: valor_contrato, departamento: departamento, municipio: municipio, usuarios:usuarios
+            valor_contrato: valor_contrato, departamento: departamento, municipio: municipio, usuarios:usuarios, url_proceso: url_proceso,
+            celular_1: celular_1, celular_2: celular_2, correo_1: correo_1, correo_2: correo_2
     }
 
     const proyects = new Proyect(newProyect)

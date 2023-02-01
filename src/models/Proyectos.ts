@@ -36,26 +36,6 @@ const proyectSchema = new Schema({
 
     },
 
-    // forma_pago: {
-    //     type: String,
-    //     required: true
-    // },
-
-    // anticipo: {
-    //     type: String,
-    //     required: true
-    // },
-
-    // interventoria: {
-    //     type: Object,
-
-    // },
-
-    // entidad: {
-    //     type: String,
-    //     required: true
-    // },
-
     valor_contrato: {
         type: Number,
         required: true
@@ -66,33 +46,41 @@ const proyectSchema = new Schema({
         required: true
     },
 
-    // url_ubicacion: {
-    //     type: String,
-    //     required: true
-    // },
+    url_proceso: {
+        type: String,
+        required: true
+    },
 
     municipio: {
         type: String,
         required: true
     },
 
-    // lugar_suscripcion: {
-    //     type: String,
-    //     required: true
-    // },
-
-    // fecha_suscripcion: {
-    //     type: String,
-    //     required: true
-    // },
 
     usuarios: {
         type: Object
     },
 
-    image: {
+    logo_proyecto: {
         type: String
-    }
+    },
+
+    celular_1:{
+        type: Number
+    }, 
+    
+    celular_2:{
+        type: Number
+    },
+
+    correo_1: {
+        type: String
+    },
+
+    correo_2: {
+        type: String
+    },
+
 
 }, {
     versionKey: false,
