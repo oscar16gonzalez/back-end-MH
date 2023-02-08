@@ -14,6 +14,9 @@ router.get('/', notificarionController.findAllNotificatio)
 //http://localhost:4000/notification
 router.put('/:id',notificarionController.updateEstado)
 
+//http://localhost:4000/notification
+router.delete('/:id', notificarionController.deleteNotification)
+
 
 
 export default router;

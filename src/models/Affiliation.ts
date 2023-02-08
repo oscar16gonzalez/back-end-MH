@@ -28,7 +28,7 @@ const affiliationSchema = new Schema ({
     },
 
     fecha_nacimiento: {
-        type: Date,
+        type: String,
         required: true
     },
 

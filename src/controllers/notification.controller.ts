@@ -48,3 +48,12 @@ export async function updateEstado(req: Request, res: Response): Promise<Respons
         updatedEstado
     })
 }
+
+export async function deleteNotification(req: Request, res: Response) {
+    const { id } = req.params
+    const notification = await Notification.findByIdAndDelete(id)
+    return res.json({
+        message: 'Notification delete succesfully',
+        notification
+    })
+}

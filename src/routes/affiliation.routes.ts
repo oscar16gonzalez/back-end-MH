@@ -23,6 +23,9 @@ router.put('/estado/:id', affiliationController.updateEstado)
 
 router.put('/asistencia/:id', affiliationController.updateAsistencia)
 
+//http://localhost:4000/afiliacion/datos/
+router.put('/datos/:id', affiliationController.updateDatos)
+
 
 //http://localhost:4000/afiliacion
 router.delete('/:id', affiliationController.deleteAffiliation)

@@ -3,6 +3,7 @@ import {request, Request, response, Response} from 'express'
 
 
 import twilio from "twilio"
+import { json } from 'stream/consumers'
 
 const accountSid = 'AC25d6a398ba3417ca31f9c7a4768c2f28'
 const authToken = '69f58bf87ecc53304c6c5e0084f616f0'
@@ -113,6 +114,20 @@ export async function updateAsistencia(req: Request, res: Response): Promise<Res
     return res.json({
         message: 'Succesfully update',
         updatedAsistencia
+    })
+}
+
+//Actualizar campos Bancarios y datos de afiliacion
+export async function updateDatos(req: Request, res: Response) {
+    const { id } = req.params
+    const { eps,  arl, fondo_pensiones, caja_compensacion, entidad_bancaria, numero_cuenta, rut, curso_alturas, examen_ingreso} = req.body
+    const updatedDatos = await Affiliation.findByIdAndUpdate(id, {
+        eps, arl, fondo_pensiones, caja_compensacion, entidad_bancaria, numero_cuenta, rut, curso_alturas, examen_ingreso
+    })
+
+    return res.json({
+        message: 'Succesfully update',
+        updatedDatos
     })
 }
 
