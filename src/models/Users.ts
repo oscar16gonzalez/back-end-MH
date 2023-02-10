@@ -41,6 +41,9 @@ const userSchema = new Schema({
     
     proyectos: {
         type: String,
+    },
+    c: {
+        type: String
     }
    
 
