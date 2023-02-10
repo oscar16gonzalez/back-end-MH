@@ -48,7 +48,6 @@ const proyectSchema = new Schema({
 
     url_proceso: {
         type: String,
-        required: true
     },
 
     municipio: {
