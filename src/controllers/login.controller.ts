@@ -7,7 +7,7 @@ export const signUp = async (req: Request, res: Response) => {
     const user: IUser = new Users({
         nombre: req.body.nombre, apellido: req.body.apellido, correo: req.body.correo,
         password: req.body.password, celular: req.body.celular, direccion: req.body.direccion,
-        estado: req.body.estado, roles: req.body.roles, proyectos: req.body.proyectos
+        estado: req.body.estado, roles: req.body.roles, proyectos: req.body.proyectos, nameProyecto: req.body.nameProyecto
     })
     user.password = await user.encryptPassword(user.password)
     const saveUser = await user.save()
@@ -72,8 +72,9 @@ export async function deleteUser(req: Request, res: Response) : Promise<Response
   export async function updateCampoProyect(req: Request, res: Response) : Promise<Response>{
     const { id } = req.params
     const { proyectos } = req.body
+    const { nameProyecto } = req.body
     const updatedUser = await Users.findByIdAndUpdate(id, {
-        proyectos
+        proyectos,nameProyecto
     })
 
     return res.json({

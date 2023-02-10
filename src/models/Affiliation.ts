@@ -154,6 +154,9 @@ const affiliationSchema = new Schema ({
     },
     proyectos: {
         type: String
+    },
+    nameProyecto: {
+        type: String
     }
 },{
     versionKey: false,
