@@ -42,7 +42,7 @@ const userSchema = new Schema({
     proyectos: {
         type: String,
     },
-    c: {
+    nameProyecto: {
         type: String
     }
    
