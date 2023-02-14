@@ -6,6 +6,7 @@ import affiliationRoutes from './routes/affiliation.routes'
 import loginRoutes from './routes/login.routes'
 import proyectRoutes from './routes/proyectos.routes'
 import notificationRoutes from './routes/notification.routes'
+import authorizationRoutes from './routes/authorization.routes'
 import bodyParser  from 'body-parser'
 import './databases'
 
@@ -43,6 +44,7 @@ app.use('/auth', loginRoutes)
 app.use('/afiliacion', affiliationRoutes)
 app.use('/proyectos', proyectRoutes)
 app.use('/notification', notificationRoutes)
+app.use('/authorization', authorizationRoutes)
 
 
 
