@@ -60,7 +60,7 @@ const proyectSchema = new Schema({
         type: Object
     },
 
-    logo_proyecto: {
+    logo: {
         type: String
     },
 
@@ -79,6 +79,10 @@ const proyectSchema = new Schema({
     correo_2: {
         type: String
     },
+    
+    entidad: {
+        type: String
+    }
 
 
 }, {
