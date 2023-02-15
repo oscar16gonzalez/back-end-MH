@@ -152,6 +152,10 @@ const affiliationSchema = new Schema ({
     asistencia: {
         type: Object
     },
+
+    dias_laborados: {
+        type: Number
+    },
     proyectos: {
         type: String
     },
