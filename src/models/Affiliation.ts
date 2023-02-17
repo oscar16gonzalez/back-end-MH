@@ -73,7 +73,7 @@ const affiliationSchema = new Schema ({
 
     //---------DATOS TRABAJADOR
     fecha_ingreso: {
-        type: Date,
+        type: String,
         required: true
 
     },
