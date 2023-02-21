@@ -29,6 +29,9 @@ router.put('/datos/:id', affiliationController.updateDatos)
 //http://localhost:4000/afiliacion/diaslaborados/
 router.put('/diaslaborados/:id', affiliationController.updateDiasLaborados)
 
+//http://localhost:4000/afiliacion/fecharetiro/
+router.put ('/fecharetiro/:id', affiliationController.updateFechaRetiro)
+
 
 //http://localhost:4000/afiliacion
 router.delete('/:id', affiliationController.deleteAffiliation)

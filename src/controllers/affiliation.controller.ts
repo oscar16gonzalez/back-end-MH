@@ -22,7 +22,7 @@ export async function creatAffiliation(req: Request , res: Response){
         direccion, correo, celular, telefono, nombre_emergencia,
         celular_emergencia,  fecha_ingreso, examen_ingreso, salario,
         cargo, curso_alturas, rut, eps, arl, fondo_pensiones, fondo_cesantias, caja_compensacion,
-        estado, numero_cuenta, entidad_bancaria, aux_admin_revision, whatsapp,telegram, asistencia, proyectos, nameProyecto, dias_laborados} = req.body
+        estado, numero_cuenta, entidad_bancaria, aux_admin_revision, whatsapp,telegram, asistencia, proyectos, nameProyecto, dias_laborados, fecha_retiro} = req.body
         
         
         const newAffiliation = {
@@ -32,7 +32,7 @@ export async function creatAffiliation(req: Request , res: Response){
             celular_emergencia: celular_emergencia, fecha_ingreso: fecha_ingreso, examen_ingreso: examen_ingreso, salario: salario,
             cargo: cargo, curso_alturas: curso_alturas, rut:rut, eps:eps, arl: arl, fondo_pensiones: fondo_pensiones, fondo_cesantias: fondo_cesantias, caja_compensacion: caja_compensacion,
             estado: estado, numero_cuenta: numero_cuenta, entidad_bancaria: entidad_bancaria, aux_admin_revision: aux_admin_revision, whatsapp: whatsapp,
-            telegram: telegram, archivos: req.file, asistencia: asistencia, proyectos: proyectos, nameProyecto: nameProyecto, dias_laborados: dias_laborados   
+            telegram: telegram, archivos: req.file, asistencia: asistencia, proyectos: proyectos, nameProyecto: nameProyecto, dias_laborados: dias_laborados, fecha_retiro: fecha_retiro   
             
           
         }
@@ -114,6 +114,19 @@ export async function updateAsistencia(req: Request, res: Response): Promise<Res
     return res.json({
         message: 'Succesfully update',
         updatedAsistencia
+    })
+}
+
+export async function updateFechaRetiro(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params
+    const { fecha_retiro  } = req.body
+    const updatedFechaRetiro = await Affiliation.findByIdAndUpdate(id, {
+        fecha_retiro
+    })
+
+    return res.json({
+        message: 'Succesfully update',
+        updatedFechaRetiro
     })
 }
 

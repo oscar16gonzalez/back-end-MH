@@ -161,7 +161,10 @@ const affiliationSchema = new Schema ({
     },
     nameProyecto: {
         type: String
-    }
+    },
+    fecha_retiro: {
+        type: String
+    } 
 },{
     versionKey: false,
     timestamps: true
