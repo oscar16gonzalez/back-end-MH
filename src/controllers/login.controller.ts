@@ -1,4 +1,4 @@
- import  Users, { IUser } from '../models/Users'
+import Users, { IUser } from '../models/Users'
 import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import config from '../config'
@@ -12,21 +12,30 @@ export const signUp = async (req: Request, res: Response) => {
     user.password = await user.encryptPassword(user.password)
     const saveUser = await user.save()
 
-    const token: string = jwt.sign({_id: saveUser._id}, process.env.TOKEN_SECRET || 'x-access')
+    const token: string = jwt.sign({ _id: saveUser._id }, process.env.TOKEN_SECRET || 'x-access')
 
     res.header('token', token).json(saveUser)
-    
+
 }
 
 //Iniciar sesion
 export const signIn = async (req: Request, res: Response) => {
-    const user = await Users.findOne({correo: req.body.correo})
+    const user = await Users.findOne({ correo: req.body.correo })
 
-    if (!user) return res.status(400).json('Email or Password is wrong')
+    if (!user) return res.json({
+        message: 'Email or Password is wrong'
+    })
 
     const correctPassword: boolean = await user.comparePassword(req.body.password)
-    if (!correctPassword) return res.status(400).json('Invalid Password')
-    res.json('Successfuly')
+    if (!correctPassword) {
+        return res.json({
+            message: 'Invalid password'
+        })
+    } else {
+        return res.json({
+            message: 'Success'
+        })
+    }
 }
 
 //buscar todos los usuarios
@@ -38,24 +47,24 @@ export async function findAllUsers(req: Request, res: Response): Promise<Respons
 //Buscar usuario por correo
 export async function findOneUser(req: Request, res: Response): Promise<Response> {
     //const { id } = req.params
-    const users = await Users.find({correo: req.params.correo})
+    const users = await Users.find({ correo: req.params.correo })
 
     return res.json(users)
 }
 
 //Borrar usuario por id 
-export async function deleteUser(req: Request, res: Response) : Promise<Response>{
+export async function deleteUser(req: Request, res: Response): Promise<Response> {
     const { id } = req.params
     const users = await Users.findByIdAndDelete(id)
     return res.json({
-     message: 'User delete succesfully',
-     users
+        message: 'User delete succesfully',
+        users
     })
- }
+}
 
 
- // actualizar por id el campo estado 
- export async function updateUser(req: Request, res: Response) : Promise<Response>{
+// actualizar por id el campo estado 
+export async function updateUser(req: Request, res: Response): Promise<Response> {
     const { id } = req.params
     const { estado } = req.body
     const updatedUser = await Users.findByIdAndUpdate(id, {
@@ -66,20 +75,20 @@ export async function deleteUser(req: Request, res: Response) : Promise<Response
         message: 'Succesfully Update',
         updatedUser
     })
- }
+}
 
-  // actualizar usuario por id el campo proyectos 
-  export async function updateCampoProyect(req: Request, res: Response) : Promise<Response>{
+// actualizar usuario por id el campo proyectos 
+export async function updateCampoProyect(req: Request, res: Response): Promise<Response> {
     const { id } = req.params
     const { proyectos } = req.body
     const { nameProyecto } = req.body
     const updatedUser = await Users.findByIdAndUpdate(id, {
-        proyectos,nameProyecto
+        proyectos, nameProyecto
     })
 
     return res.json({
         message: 'Succesfully Update',
         updatedUser
     })
- }
+}
 
