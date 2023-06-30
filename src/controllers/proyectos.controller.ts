@@ -6,14 +6,15 @@ import {request, Request, response, Response} from 'express';
 export async function creatProyects(req: Request, res: Response): Promise<Response> {
     const { contrato, objeto_contrato, contratista, nit, nombre_rep_legal, cedula_rep_legal,
         plazo_ejecucion, valor_contrato, departamento, municipio, usuarios, url_proceso, celular_1, 
-        celular_2, correo_1, correo_2, entidad, logo} = req.body
+        celular_2, correo_1, correo_2, entidad, logo, ips, direccion_ips, telefono_ips} = req.body
     
 
     const newProyect = {
             contrato: contrato, objeto_contrato: objeto_contrato, contratista: contratista, nit: nit,
             nombre_rep_legal: nombre_rep_legal, cedula_rep_legal: cedula_rep_legal, plazo_ejecucion: plazo_ejecucion,
             valor_contrato: valor_contrato, departamento: departamento, municipio: municipio, usuarios:usuarios, url_proceso: url_proceso,
-            celular_1: celular_1, celular_2: celular_2, correo_1: correo_1, correo_2: correo_2,  entidad: entidad, logo: logo
+            celular_1: celular_1, celular_2: celular_2, correo_1: correo_1, correo_2: correo_2,  entidad: entidad, logo: logo, ips: ips,
+            direccion_ips: direccion_ips, telefono_ips: telefono_ips
     }
 
     const proyects = new Proyect(newProyect)

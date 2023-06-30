@@ -79,6 +79,16 @@ const proyectSchema = new Schema({
     correo_2: {
         type: String
     },
+
+    ips: {
+        type: String
+    },
+    direccion_ips: {
+        type: String
+    },
+    telefono_ips: {
+        type: String
+    },
     
     entidad: {
         type: String
