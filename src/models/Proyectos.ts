@@ -89,6 +89,9 @@ const proyectSchema = new Schema({
     telefono_ips: {
         type: String
     },
+    arl: {
+        type: String
+    },
     
     entidad: {
         type: String
