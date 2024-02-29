@@ -151,9 +151,9 @@ export async function updateDiasLaborados(req: Request, res: Response) {
 //Actualizar campos Bancarios y datos de afiliacion
 export async function updateDatos(req: Request, res: Response) {
     const { id } = req.params
-    const { eps,  arl, fondo_pensiones, caja_compensacion, entidad_bancaria, numero_cuenta, rut, curso_alturas, examen_ingreso, fonod_cesantias} = req.body
+    const { eps,  arl, fondo_pensiones, caja_compensacion, entidad_bancaria, numero_cuenta, rut, curso_alturas, examen_ingreso, fonod_cesantias, salario, cargo, fecha_ingreso} = req.body
     const updatedDatos = await Affiliation.findByIdAndUpdate(id, {
-        eps, arl, fondo_pensiones, caja_compensacion, entidad_bancaria, numero_cuenta, rut, curso_alturas, examen_ingreso, fonod_cesantias
+        eps, arl, fondo_pensiones, caja_compensacion, entidad_bancaria, numero_cuenta, rut, curso_alturas, examen_ingreso, fonod_cesantias, salario, cargo, fecha_ingreso 
     })
 
     return res.json({
@@ -182,7 +182,7 @@ export async function SMS(req: Request, res: Response) {
 
 
     client.messages.create({
-        body: `Hola, ${nombre} ya te encuentras listo para comenzar a trabajar con la empresa OHA, presentate el dia sabado a las 8:00 AM`,
+        body: `Hola, ${nombre}ya te encuentras listo para comenzar a trabajar con la empresa OHA, presentate el dia sabado a las 8:00 AM`,
         //to: process.env.NUMBER_PHONE,
         // to: `+57${celular}`,
         to: `+573128502119`,
